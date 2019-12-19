@@ -87,7 +87,7 @@
 <div class="col-sm-3">
 </div>
 <div class="col-sm-4">
-<h2>Add User</h2>
+<h2>Add Comment</h2>
 <?php
     require('connect_db.php');
 ?>

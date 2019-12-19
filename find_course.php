@@ -13,7 +13,6 @@ else {
 
 $sql = "exec p_view_information_course '$input'";
 $result =sqlsrv_query($conn, $sql);
-$row = sqlsrv_fetch_array($result);
 if( $result === false ) {
     if( ($errors = sqlsrv_errors() ) != null) {
         foreach( $errors as $error ) {
@@ -23,6 +22,7 @@ if( $result === false ) {
         }
     }
 }
+$row = sqlsrv_fetch_array($result);
 ?>
 <table class="table table-hover table-bordered" >
 <thead>
