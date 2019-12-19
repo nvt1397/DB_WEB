@@ -134,15 +134,9 @@ BEGIN
             INSERT INTO students
             (
                 students_id
-		students_score
-		students_level
-		students_bought_courses
             )
             SELECT
                 users_id
-		0
-		'beginner'
-		0		
             FROM inserted;
         END
 
@@ -259,8 +253,8 @@ CREATE PROCEDURE p_create_courses
 AS
 BEGIN
     IF EXISTS (SELECT * FROM dbo.courses WHERE  @courses_id = courses_id)
-        RAISERROR ('Courese was existed',16,1)
-    ELSE
+        RAISERROR ('ERROR: Courese was existed',16,1)
+	ELSE IF EXISTS (SELECT * FROM dbo.lectures WHERE  @courses_responsible = lectures_id)
         BEGIN
             INSERT INTO dbo.courses
             (
@@ -296,6 +290,8 @@ BEGIN
                 @courses_responsible
             )
         END
+	else
+		RAISERROR ('ERROR: Lecturer is not existed',16,1)
 END
 GO
 
